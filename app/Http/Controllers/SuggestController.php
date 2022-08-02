@@ -8,9 +8,10 @@ use phpDocumentor\Reflection\Types\Void_;
 
 class SuggestController extends Controller
 {
+
     /*
-         * Посмотреть все предложения
-         * */
+     * Посмотреть все предложения
+     * */
     public function index()
     {
         $suggestions = Suggestion::all();
@@ -19,13 +20,34 @@ class SuggestController extends Controller
     }
 
     /*
-     * Функция добавления в базу новых записей
-     * */
+ * Функция создания новых записей
+ * */
 
     public function create()
     {
-//        Suggestion::create($suggestArr);
+        return view('suggest.create');
+    }
 
-        return view ('suggest.create');
+    /*
+* Функция добавления в базу новых записей
+* */
+
+    public function store()
+    {
+        $func = $_POST['func'];
+        if ($func === 'func_data') {
+            $arr['coordinates'] = $_POST['Coordinates'];
+            dd(json_encode($arr));
+        }
+
+        $data = request()->validate([
+            'name'=>'string',
+            'description'=>'string',
+        ]);
+
+        Suggestion::create($data);
+
+        return view('success');
     }
 }
+

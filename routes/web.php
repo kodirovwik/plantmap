@@ -42,6 +42,10 @@ Route::get('/suggestions',[Controllers\SuggestController::class, 'index'])->name
 
 Route::get('/suggestions/create',[Controllers\SuggestController::class, 'create'])->name('suggestions.create');
 
+Route::post('/suggestions',[Controllers\SuggestController::class, 'store'])->name('suggestions.store');
+
 Route::get('/about',[Controllers\AboutController::class, 'index'])->name('about.index');
 
 Route::get('/fake_suggestion',[Controllers\FakeSuggestController::class, 'index'])->name('fake_suggest.index');
+
+Route::get('/fake_suggestion/create',[Controllers\FakeSuggestController::class, 'create'])->name('fake_suggest.create');

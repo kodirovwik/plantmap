@@ -40,22 +40,16 @@
                     <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Название</th>
-                        <th scope="col">Описание</th>
-                        <th scope="col">Координаты</th>
+                        <th scope="col">Текстик</th>
                         <th scope="col">Фото</th>
-                        <th scope="col">Опубликовано</th>
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach($suggestions as $suggest)
+                    @foreach($fake_suggestions as $fake_suggest)
                     <tr>
-                        <th scope="row">{{ $suggest->id }}</th>
-                        <td>{{ $suggest->name }}</td>
-                        <td>{{ $suggest->description }}</td>
-                        <td>{{ $suggest->lat }}, {{ $suggest->lng }}</td>
-                        <td>{{ $suggest->file_name }}</td>
-                        <td>@if ($suggest->is_published != 0) Да @else Нет @endif</td>
+                        <th scope="row">{{ $fake_suggest->id }}</th>
+                        <td>{{ $fake_suggest->description }}</td>
+                        <td>{{ $fake_suggest->file_name }}</td>
                     </tr>
                     @endforeach
                     </tbody>

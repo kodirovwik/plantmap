@@ -2,18 +2,31 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Suggestion;
+use App\Models\FakeSuggestion;
 use Illuminate\Http\Request;
 use phpDocumentor\Reflection\Types\Void_;
 
 class FakeSuggestController extends Controller
 {
     /*
-     * Тренировочная функция
+     * Посмотреть все предложения
      * */
     public function index()
     {
-        return view('fake_suggest');
+        $fake_suggestions = FakeSuggestion::all();
+
+        return view('fake_suggest.index', compact('fake_suggestions'));
+    }
+
+    /*
+    * Функция добавления в базу новых записей
+    */
+
+    public function create(){
+
+//        FakeSuggestion::create($suggestArr);
+
+        return view('fake_suggest.create');
     }
 
     /*

@@ -1,6 +1,7 @@
 @extends('layouts.suggest')
 @section('content')
-<form action="" method="post">
+<form action="{{ route('suggestions.store') }}" method="post">
+    @csrf
     <section id="about" class="about">
         <div class="container">
             <div class="description">
@@ -17,18 +18,25 @@
                         </div>
                         <div class="desc">
                             <label for="about" class="labeldesc">Описание</label>
-                            <textarea name="descr" placeholder="Введите описание"></textarea>
+                            <textarea name="description" placeholder="Введите описание"></textarea>
                         </div>
                     </div>
                     <div class="middle input">
                         <p>
                             Карта
                         </p>
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d76894.9551830763!2d39.238166390507466!3d51.68949726488338!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sru!2sru!4v1654257335279!5m2!1sru!2sru" width="600" height="450" style="border:black;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        <div id="map" class="map"></div>
+                        <script src="https://api-maps.yandex.ru/2.1/?apikey=b7104193-7bb8-4982-9eec-f7201dc906ee&lang=ru_RU"></script>
+                        <script src="{{ asset('js/map.js') }}"></script>
                     </div>
                     <div class="right">
                         <a href="#" class="button">Прикрепить фото</a>
                     </div>
+                    <script type="text/javascript">
+                        $(document).on('click', '.button', function (){
+
+                        })
+                    </script>
                 </div>
             </div>
         </div>
@@ -36,7 +44,7 @@
     <footer id="footer" class="footer">
         <div class="container">
             <div class="send">
-                <input type="submit" class="button" >
+                <input type="submit" class="button">
             </div>
         </div>
     </footer>
