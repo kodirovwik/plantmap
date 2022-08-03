@@ -1,7 +1,7 @@
 @extends('layouts.suggest')
 @section('content')
 <form action="{{ route('suggestions.store') }}" method="post">
-    <input name="coords" id="coord">
+    <input type="hidden" name="coords" id="coord">
     @csrf
     <section id="about" class="about">
         <div class="container">
