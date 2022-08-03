@@ -14,24 +14,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//Тренировочные маршруты":
-
-Route::get('/suggestions',[Controllers\SuggestController::class, 'name_change']);
-
-//Предложить растение
-Route::get('/suggestions/create', [Controllers\SuggestController::class, 'suggestPlant']);
-
-//Изменить свою запись
-Route::get('/suggestions/update', [Controllers\SuggestController::class, 'updatePlant']);
-
-//Удалить свою запись
-Route::get('/suggestions/delete', [Controllers\SuggestController::class, 'deletePlant']);
-
-
-Route::get('/suggestions/foc', [Controllers\SuggestController::class, 'firstOrCreate']);
-
-Route::get('/suggestions/uoc', [Controllers\SuggestController::class, 'updateOrCreate']);
-
 //Реальные маршруты дальше:
 
 Route::get('/',[Controllers\MainController::class, 'index'])->name('main.index');
@@ -49,3 +31,7 @@ Route::get('/about',[Controllers\AboutController::class, 'index'])->name('about.
 Route::get('/fake_suggestion',[Controllers\FakeSuggestController::class, 'index'])->name('fake_suggest.index');
 
 Route::get('/fake_suggestion/create',[Controllers\FakeSuggestController::class, 'create'])->name('fake_suggest.create');
+
+Route::get ('/success', function () {
+        return view('success');
+})->name('success');

@@ -5,7 +5,8 @@
         <div class="container">
             <div class="description">
                 <h1>Success!</h1>
-                <a href="{{ route('suggest.create') }}" class="button">Вернуться на страницу создания</a>
+                <?php dump($suggest_data) ?>
+                <a href="{{ route('suggestions.create') }}" class="button">Вернуться на страницу создания</a>
             </div>
         </div>
     </form>

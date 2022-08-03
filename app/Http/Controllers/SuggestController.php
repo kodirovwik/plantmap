@@ -32,22 +32,24 @@ class SuggestController extends Controller
 * Функция добавления в базу новых записей
 * */
 
-    public function store()
+    public function store(Request $request)
     {
-        $func = $_POST['func'];
-        if ($func === 'func_data') {
-            $arr['coordinates'] = $_POST['Coordinates'];
-            dd(json_encode($arr));
-        }
 
-        $data = request()->validate([
-            'name'=>'string',
-            'description'=>'string',
+        $validated = $request->validate([
+            'name'=>'required|string',
+            'description'=>'required|string',
+            'coords' => 'required|string',
         ]);
+        $coordinates = explode(',',$validated['coords']);
 
-        Suggestion::create($data);
+        $suggest_data = [
+            'name' => $request['name'],
+            'description' => $request['description'],
+            'lat' => $coordinates [0],
+            'lng' => $coordinates [1],
+        ];
 
-        return view('success');
+        return view('success',compact ('suggest_data'));
     }
 }
 

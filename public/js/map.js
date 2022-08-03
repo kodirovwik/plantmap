@@ -1,7 +1,9 @@
+ymaps.ready(init);
+
 function init() {
     var myPlacemark,
         myMap = new ymaps.Map('map', {
-            center: [51.661502, 39.201560],
+            center: [51.661544, 39.201670],
             zoom: 16
         }, {
             searchControlProvider: 'yandex#search'
@@ -10,6 +12,7 @@ function init() {
     // Слушаем клик на карте.
     myMap.events.add('click', function (e) {
         var coords = e.get('coords');
+        document.getElementById('coord').value = coords.toString();
 
         // Если метка уже создана – просто передвигаем ее.
         if (myPlacemark) {
@@ -30,15 +33,24 @@ function init() {
     // Создание метки.
     function createPlacemark(coords) {
         return new ymaps.Placemark(coords, {
-            hintContent: coords
+            iconCaption: coords
         }, {
             preset: 'islands#violetDotIconWithCaption',
             draggable: false
         });
     }
 
-    myMap.controls.remove ('trafficControl');
+    // Определяем адрес по координатам (обратное геокодирование).
+    function getAddress(coords) {
+        myPlacemark.properties.set('iconCaption', coords);
+        ymaps.geocode(coords).then(function (res) {
+            var firstGeoObject = res.geoObjects.get(0);
 
+            myPlacemark.properties
+                .set({
+                    // В качестве контента балуна задаем строку с адресом объекта.
+                    balloonContent: coords
+                });
+        });
+    }
 }
-
-ymaps.ready(init);

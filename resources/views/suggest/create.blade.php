@@ -1,6 +1,7 @@
 @extends('layouts.suggest')
 @section('content')
 <form action="{{ route('suggestions.store') }}" method="post">
+    <input name="coords" id="coord">
     @csrf
     <section id="about" class="about">
         <div class="container">
@@ -14,11 +15,11 @@
                             <label for="about" class="labelname">
                                 Название (если знаете)
                             </label>
-                            <input type="text" name="name" class="name" placeholder="Введите название (необязательно)">
+                            <input id='name' type="text" name="name" class="name" placeholder="Введите название (необязательно)">
                         </div>
                         <div class="desc">
                             <label for="about" class="labeldesc">Описание</label>
-                            <textarea name="description" placeholder="Введите описание"></textarea>
+                            <textarea id="description" name="description" placeholder="Введите описание"></textarea>
                         </div>
                     </div>
                     <div class="middle input">
@@ -30,13 +31,8 @@
                         <script src="{{ asset('js/map.js') }}"></script>
                     </div>
                     <div class="right">
-                        <a href="#" class="button">Прикрепить фото</a>
+                        <a href="" class="button">Прикрепить фото</a>
                     </div>
-                    <script type="text/javascript">
-                        $(document).on('click', '.button', function (){
-
-                        })
-                    </script>
                 </div>
             </div>
         </div>
