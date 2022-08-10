@@ -49,7 +49,10 @@
                     <tr>
                         <th scope="row">{{ $fake_suggest->id }}</th>
                         <td>{{ $fake_suggest->description }}</td>
-                        <td>{{ $fake_suggest->file_name }}</td>
+                        <td><a href="/storage/{{ ($fake_suggest->file_url) }}">
+                                <img src="/storage/{{ ($fake_suggest->file_url) }}" style="width: 100px;" title="{{ $fake_suggest->file_name }}">
+                            </a>
+                        </td>
                     </tr>
                     @endforeach
                     </tbody>

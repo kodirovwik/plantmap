@@ -22,106 +22,28 @@ class FakeSuggestController extends Controller
     * Функция добавления в базу новых записей
     */
 
-    public function create(){
-
-//        FakeSuggestion::create($suggestArr);
+    public function create()
+    {
 
         return view('fake_suggest.create');
+
     }
 
-    /*
-     * Функция добавления в базу новых записей
-     * */
-
-    public function suggestPlant()
+    public function store(Request $request)
     {
-        $suggestArr = [
-            ['name' => 'Витий',
-            'description' => 'Албанская кармитка',
-            'lat' => 32.445,
-            'lng' => 15.234,
-            'file_url' => '',
-            'file_name' => '',],
-
-                ['name' => 'Егорченко',
-                'description' => 'Где это я?',
-                'lat' => 32.445,
-                'lng' => 15.234,
-                'file_url' => 'фывфыв',
-                'file_name' => 'вввв',]
-        ];
-        foreach ($suggestArr as $value) {
-            Suggestion::create($value);
-        }
-    }
-
-    /*
-    *  Функция обновления записей в базе
-     * суджест айди - это айди записи которую мы хотим апдейтить
-     * апдейт - это массив с новыми значениями каждого атрибута
-     * например:
-     * $suggest_id = 1;
-     * $update = [
-            'name' => 'Егор Летов',
-            'description' => 'нашел на железной дороге путь в валхалу',
-            'lat' => 32.445,
-            'lng' => 15.234,
-            'file_url' => 'asda2113wSAD',
-            'file_name' => 'valhala_photo',
-        ];
-    * */
-
-    public function updatePlant($suggest_id, $update)
-    {
-        $update = [
-            'name' => 'Летов',
-            'description' => 'Приветули валхалу',
-            'lat' => 32.445,
-            'lng' => 15.234,
-            'file_url' => 'asda2113wSAD',
-            'file_name' => 'Фот Очка',
-        ];
-        $suggest = Suggestion::find($suggest_id);
-
-
-        $suggest->update([
-            'name' => $update['name'],
-            'description' => $update['description'],
-            'lat' => $update['lat'],
-            'lng' => $update['lng'],
-            'file_url' => $update['file_url'],
-            'file_name' => $update['file_name'],
+        $validated = $request->validate([
+            'descr' => 'required|string'
         ]);
-    }
+        $file = $request->file('userfile')->store('user_files_shit', ['disk' => 'public']);
 
-    public function deletePlant()
-    {
-        $suggest = Suggestion::find(6);
-        $suggest->delete();
-        dd($suggest);
-    }
-
-    public function firstOrCreate (){
-        $nick_name = 'TdX';
-        $sugggest = Suggestion::firstOrCreate(
-            ['name' => $nick_name],
-            []);
-    }
-
-
-    public function updateOrCreate (){
-        $update = [
-            'name' => 'Miwa',
-            'description' => 'Description',
-            'lat' => 32.445,
-            'lng' => 15.234,
-            'file_url' => 'asda2113wSAD',
-            'file_name' => 'Фот Очка',
+        $fake_suggest_data = [
+            'description' => $validated ['descr'],
+            'file_name' => $request->file('userfile')->getClientOriginalName(),
+            'file_url' => $file,
         ];
-        $suggest = Suggestion::updateOrCreate([
-            'name' => $update['name']
-        ],$update);
-        dump ($suggest->description);
-        dd('done');
+
+        FakeSuggestion::create($fake_suggest_data);
+
+        return view('success', compact('fake_suggest_data'));
     }
 }

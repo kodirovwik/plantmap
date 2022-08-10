@@ -54,7 +54,10 @@
                         <td>{{ $suggest->name }}</td>
                         <td>{{ $suggest->description }}</td>
                         <td>{{ $suggest->lat }}, {{ $suggest->lng }}</td>
-                        <td>{{ $suggest->file_name }}</td>
+                        <td><a href="/storage/{{ ($suggest->file_url) }}">
+                            <img src="/storage/{{ ($suggest->file_url) }}" style="width: 100px;" title="{{ $suggest->file_name }}">
+                            </a>
+                        </td>
                         <td>@if ($suggest->is_published != 0) Да @else Нет @endif</td>
                     </tr>
                     @endforeach

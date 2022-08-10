@@ -5,7 +5,7 @@
         <div class="container">
             <div class="description">
                 <h1>Success!</h1>
-                <?php dump($suggest_data) ?>
+                <div>Че за хуйня?</div>
                 <a href="{{ route('suggestions.create') }}" class="button">Вернуться на страницу создания</a>
             </div>
         </div>

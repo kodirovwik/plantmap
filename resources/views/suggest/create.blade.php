@@ -1,13 +1,13 @@
 @extends('layouts.suggest')
 @section('content')
-<form action="{{ route('suggestions.store') }}" method="post">
+<form action="{{ route('suggestions.store') }}" method="post" enctype="multipart/form-data">
     <input type="hidden" name="coords" id="coord">
     @csrf
     <section id="about" class="about">
         <div class="container">
             <div class="description">
                 <div class="comment">
-                    <p>В полях ниже вы можете указать название или описать то что нашли и пометить месторасположение находки на карте, а так же прикрепить несколько фото</p>
+                    <p>В полях ниже вы можете указать название или описать то что нашли и пометить месторасположение находки на карте, а так же прикрепить фото</p>
                 </div>
                 <div class="main input">
                     <div class="left input">
@@ -30,9 +30,12 @@
                         <script src="https://api-maps.yandex.ru/2.1/?apikey=b7104193-7bb8-4982-9eec-f7201dc906ee&lang=ru_RU"></script>
                         <script src="{{ asset('js/map.js') }}"></script>
                     </div>
-                    <div class="right">
-                        <a href="" class="button">Прикрепить фото</a>
+                    <div class="fileUpload">
+                        <!-- Поле MAX_FILE_SIZE должно быть указано до поля загрузки файла -->
+                        <input type="hidden" name="MAX_FILE_SIZE" value="30000" />
+                        <input name="userfile" type="file" />
                     </div>
+
                 </div>
             </div>
         </div>

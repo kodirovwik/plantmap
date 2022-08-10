@@ -71,7 +71,7 @@ li > a:hover {
 }
 .left {
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
 }
 .nam {
@@ -86,6 +86,7 @@ li > a:hover {
     background-color: #D9D9D9;
     border: 1px solid #D9D9D9;
     padding: 0;
+    text-align: center;
 }
 textarea{
     height: 250px;
@@ -95,6 +96,7 @@ textarea{
     padding: 0;
     background-color: #D9D9D9;
     border: 1px solid #D9D9D9;
+    text-align: center;
 }
 ::placeholder {
     text-align: center;
@@ -156,4 +158,14 @@ textarea{
     justify-content: space-between;
     align-items: center;
     padding-bottom: 30px;
+}
+.password_see {
+    height: 30px;
+    width: 50px;
+    position: absolute;
+
+}
+.knopka > input{
+    background-color: transparent;
+    cursor: pointer;
 }

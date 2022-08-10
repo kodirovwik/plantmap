@@ -32,6 +32,4 @@ Route::get('/fake_suggestion',[Controllers\FakeSuggestController::class, 'index'
 
 Route::get('/fake_suggestion/create',[Controllers\FakeSuggestController::class, 'create'])->name('fake_suggest.create');
 
-Route::get ('/success', function () {
-        return view('success');
-})->name('success');
+Route::post('/fake_suggestion',[Controllers\FakeSuggestController::class, 'store'])->name('fake_suggest.store');
