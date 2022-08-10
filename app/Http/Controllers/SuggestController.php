@@ -6,7 +6,11 @@ use App\Models\Suggestion;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Orchid\Screen\Layouts\Modal;
 use phpDocumentor\Reflection\Types\Void_;
+use Orchid\Support\Facades\Layout;
+use Orchid\Screen\Actions\ModalToggle;
+use Orchid\Support\Facades\Toast;
 
 class SuggestController extends Controller
 {
@@ -17,23 +21,53 @@ class SuggestController extends Controller
     public function index(Request $request)
     {
         $validated = $request->validate([
-           'name' => 'required|string',
-           'password' => 'required|string',
+            'name' => 'required|string',
+            'password' => 'required|string',
         ]);
 
+        if (validateUser($validated)) {
+            $suggestions = Suggestion::all();
+            return view('suggest.index', compact('suggestions'))
+        }
+        else {
+
+        }
+
+
+    }
+    public function validateUser ($validated){
         $users = User::all();
         foreach ($users as $user) {
             if ($user->name == $validated['name'] and $user->password == $validated['password']) {
-                $suggestions = Suggestion::all();
-                return view('suggest.index', compact('suggestions'));
+                return true;
             }
             else {
-                return view('about',compact('validated'));
+                return false;
             }
         }
-
     }
 
+    public function commandBar(): array
+    {
+        return [
+            ModalToggle::make('Launch demo modal')
+                ->modal('exampleModal')
+                ->method('action')
+                ->icon('full-screen'),
+        ];
+    }
+    public function layout(): array
+    {
+        return [
+            Layout::modal('exampleModal', [
+                Layout::rows([]),
+            ]),
+        ];
+    }
+    public function action(): void
+    {
+        Toast::info('Hello, world! This is a toast message.');
+    }
     /*
  * Функция создания новых записей
  * */
