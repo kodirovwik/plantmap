@@ -5,12 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Suggestion;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Orchid\Screen\Layouts\Modal;
 use phpDocumentor\Reflection\Types\Void_;
-use Orchid\Support\Facades\Layout;
-use Orchid\Screen\Actions\ModalToggle;
-use Orchid\Support\Facades\Toast;
+
 
 class SuggestController extends Controller
 {
@@ -24,50 +23,18 @@ class SuggestController extends Controller
             'name' => 'required|string',
             'password' => 'required|string',
         ]);
-
-        if (validateUser($validated)) {
+        $user = $this->validateUser($validated);
+        if (!empty($user)){
             $suggestions = Suggestion::all();
-            return view('suggest.index', compact('suggestions'))
+            return view('suggest.index', compact('suggestions'));
         }
         else {
-
-        }
-
-
-    }
-    public function validateUser ($validated){
-        $users = User::all();
-        foreach ($users as $user) {
-            if ($user->name == $validated['name'] and $user->password == $validated['password']) {
-                return true;
-            }
-            else {
-                return false;
-            }
+            $user = 'Привет';
+            return view ('about',compact('user'));
         }
     }
 
-    public function commandBar(): array
-    {
-        return [
-            ModalToggle::make('Launch demo modal')
-                ->modal('exampleModal')
-                ->method('action')
-                ->icon('full-screen'),
-        ];
-    }
-    public function layout(): array
-    {
-        return [
-            Layout::modal('exampleModal', [
-                Layout::rows([]),
-            ]),
-        ];
-    }
-    public function action(): void
-    {
-        Toast::info('Hello, world! This is a toast message.');
-    }
+
     /*
  * Функция создания новых записей
  * */
@@ -111,6 +78,19 @@ class SuggestController extends Controller
 
         return view('success',compact ('suggest_data'));
 //        return redirect()->route('suggestions.index');
+    }
+
+    private function validateUser(array $validated)
+    {
+        if (!empty($validated)) {
+            return DB::table('users')->where([
+                'name' => $validated['name'],
+                'password' => $validated['password'],
+            ])->first();
+        }
+        else {
+            return false;
+        }
     }
 }
 
