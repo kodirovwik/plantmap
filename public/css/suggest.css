@@ -134,6 +134,8 @@ textarea{
     height: 78px;
     justify-content: space-around;
     align-items: center;
+    cursor:pointer;
+
 }
 .button:hover {
     font-size: 27px;
