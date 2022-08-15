@@ -18,6 +18,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/',[Controllers\MainController::class, 'index'])->name('main.index');
 
+Route::get('/random',[Controllers\MainController::class, 'random'])->name('random.index');
+
 Route::get('/map',[Controllers\MapController::class, 'index'])->name('map.index');
 
 Route::get('/suggestions',[Controllers\SuggestController::class, 'index'])->name('suggestions.index');

@@ -1,10 +1,11 @@
-const axios = require('axios');
+const axios = require('axios').default
 const button = document.querySelector('#button.button');
-const username = document.getElementById('name');
-const password = document.getElementById('password');
+const username = document.getElementById('name').value;
+const password = document.getElementById('password').value;
+
 
 function login_post() {
-    axios.get('/suggestions')
+    axios.post('/suggestions')
         .then(function (response){
             console.log(response);
         })
@@ -13,4 +14,4 @@ function login_post() {
         })
 }
 
-button.addEventListener('click', login_post);
+button.addEventListener('click', login_post());

@@ -32,5 +32,6 @@
             justify-content: center;
         }
     </style>
-<script src="{{ asset('js/validation/index.js') }}"></script>
+{{--<script src="{{ asset('js/validation/index.js') }}"></script>--}}
+<script src="{{asset('js/validation/bundle.js')}}"></script>
 @endsection

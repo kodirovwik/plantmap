@@ -31,6 +31,7 @@ class SuggestController extends Controller
         else {
             $user = 'Привет';
             return view ('about',compact('user'));
+            dump();
         }
     }
 
@@ -59,8 +60,9 @@ class SuggestController extends Controller
         $coordinates = explode(',',$validated['coords']);
 
         if (!empty($request->file('userfile'))) {
-
-            $file = $request->file('userfile')->store('user_files', ['disk' => 'public']);
+           $file = $request->file('userfile')->store('public/user_files',[
+               'disks' => 'public'
+           ]);
         }
         else {
             return 'Выбери файл, петух!';
