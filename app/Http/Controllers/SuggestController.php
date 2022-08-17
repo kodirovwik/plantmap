@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Suggestion;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Orchid\Screen\Layouts\Modal;
@@ -19,19 +20,14 @@ class SuggestController extends Controller
      * */
     public function index(Request $request)
     {
-        $validated = $request->validate([
-            'name' => 'required|string',
-            'password' => 'required|string',
-        ]);
-        $user = $this->validateUser($validated);
-        if (!empty($user)){
-            $suggestions = Suggestion::all();
+        dd ($request);
+        if ($request->cookie()['session_id'])
+         {
+            $suggestions = Suggestion::all() ;
             return view('suggest.index', compact('suggestions'));
         }
         else {
-            $user = 'Привет';
-            return view ('about',compact('user'));
-            dump();
+            return redirect()->route('about.index');
         }
     }
 
@@ -80,19 +76,6 @@ class SuggestController extends Controller
 
         return view('success',compact ('suggest_data'));
 //        return redirect()->route('suggestions.index');
-    }
-
-    private function validateUser(array $validated)
-    {
-        if (!empty($validated)) {
-            return DB::table('users')->where([
-                'name' => $validated['name'],
-                'password' => $validated['password'],
-            ])->first();
-        }
-        else {
-            return false;
-        }
     }
 }
 

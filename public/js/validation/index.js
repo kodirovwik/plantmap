@@ -1,17 +1,24 @@
 const axios = require('axios').default
 const button = document.querySelector('#button.button');
-const username = document.getElementById('name').value;
-const password = document.getElementById('password').value;
-
 
 function login_post() {
-    axios.post('/suggestions')
+    const username = document.getElementById('name').value;
+    const password = document.getElementById('password').value;
+
+    axios.post('/login', {
+        username: username,
+        password: password,
+    }
+    )
         .then(function (response){
-            console.log(response);
+            window.location.replace('http://plantmap.ru/suggestions');
         })
         .catch(function (error) {
-            console.log(error);
+            return modal.open();
         })
-}
+    }
 
-button.addEventListener('click', login_post());
+button.addEventListener('click', function (){
+    login_post();
+});
+

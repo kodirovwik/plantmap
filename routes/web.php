@@ -14,13 +14,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//Реальные маршруты дальше:
 
 Route::get('/',[Controllers\MainController::class, 'index'])->name('main.index');
 
-Route::get('/random',[Controllers\MainController::class, 'random'])->name('random.index');
-
 Route::get('/map',[Controllers\MapController::class, 'index'])->name('map.index');
+
+Route::post ('/login', [Controllers\AuthController::class, 'login']);
+
+Route::get ('/logout', [Controllers\AuthController::class, 'logout'])->name('auth.logout');
 
 Route::get('/suggestions',[Controllers\SuggestController::class, 'index'])->name('suggestions.index');
 

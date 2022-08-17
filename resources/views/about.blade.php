@@ -3,8 +3,6 @@
 <section id="about" class="about">
     <link href="{{ asset('css/modal.css') }}" rel="stylesheet">
     <div class="container">
-        <script src="{{ asset('js/validation_error.js') }}"></script>
-
             <div class="description">
                 <div class="opisanie">
                     <a>&nbsp Я Павлуша, мамин разработчик. Живу в Воронеже, пиво не пью, шампунь сыплю, порошок наливаю. Поля ниже только для меня, чтоб я мог смотреть с кайфом что вы понакидали. Если подберете мои аутентификационные данные, то можете собой гордиться ибо мне похую, я новый такой сайт сделаю если что)</a>
@@ -32,6 +30,6 @@
             justify-content: center;
         }
     </style>
-{{--<script src="{{ asset('js/validation/index.js') }}"></script>--}}
+<script src="{{asset('js/validation/modal.js')}}"></script>
 <script src="{{asset('js/validation/bundle.js')}}"></script>
 @endsection

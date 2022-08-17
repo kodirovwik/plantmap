@@ -2,7 +2,6 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\SuggestController;
 
 
 /*
@@ -15,6 +14,4 @@ use App\Http\Controllers\SuggestController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-
-
 

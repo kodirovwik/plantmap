@@ -27,6 +27,9 @@
                 <li>
                     <a href="{{ route('fake_suggest.index') }}">Тут какули)</a>
                 </li>
+                <li>
+                    <a href="{{ route('auth.logout') }}">Выход</a>
+                </li>
             </ul>
         </div>
     </div>

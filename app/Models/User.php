@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Support\Facades\DB;
 use Orchid\Platform\Models\User as Authenticatable;
 
 class User extends Authenticatable
@@ -63,4 +64,16 @@ class User extends Authenticatable
         'updated_at',
         'created_at',
     ];
+    public static function validateUser($array)
+    {
+        if (!empty($array)) {
+            return DB::table('users')->where([
+                'name' => $array['username'],
+                'password' => $array['password'],
+            ])->first();
+        }
+        else {
+            return false;
+        }
+    }
 }
