@@ -3,25 +3,28 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use http\Env\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class AuthController extends Controller
 {
-    public function login(Request $request) {
+    public function authenticate(Request $request) {
+        $request->validate([
+           'username' => 'required',
+           'password' => 'required',
+        ]);
         $data = $request->json()->all();
         $user = User::validateUser($data);
         if (!empty($user)) {
-            $session = session(['session_id' => session()->getId()]);
-            return redirect()->route('suggestions.index', compact('session'));
+            $request->session()->regenerate();
+            return redirect()->intended(route('main',compact('user')));
         }
         else {
-            return response('Ошибка авторизации', 422);
+            return response('Ошибка авторизации', 401);
         }
     }
     public function logout() {
-        session()->forget('laravel_session');
+
     }
 
 }

@@ -14,7 +14,11 @@ function login_post() {
             window.location.replace('http://plantmap.ru/suggestions');
         })
         .catch(function (error) {
-            return modal.open();
+                console.log(error.response.status);
+                // if (error.response.data.errors.username[0] == 'The username field is required.') {
+                //     console.log('Поле "Имя пользователя" не может быть пустым!');
+                // }
+            // console.log(errors);
         })
     }
 

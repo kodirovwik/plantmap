@@ -19,17 +19,18 @@ Route::get('/',[Controllers\MainController::class, 'index'])->name('main.index')
 
 Route::get('/map',[Controllers\MapController::class, 'index'])->name('map.index');
 
-Route::post ('/login', [Controllers\AuthController::class, 'login']);
+Route::post('/login', [Controllers\AuthController::class, 'authenticate'])->name('authenticate');
 
-Route::get ('/logout', [Controllers\AuthController::class, 'logout'])->name('auth.logout');
+Route::get('/logout', [Controllers\AuthController::class, 'logout'])->name('logout');
 
-Route::get('/suggestions',[Controllers\SuggestController::class, 'index'])->name('suggestions.index');
+Route::get('/suggestions',[Controllers\SuggestController::class, 'index'])->middleware('auth')->name('suggestions.index');
+
 
 Route::get('/suggestions/create',[Controllers\SuggestController::class, 'create'])->name('suggestions.create');
 
 Route::post('/suggestions',[Controllers\SuggestController::class, 'store'])->name('suggestions.store');
 
-Route::get('/about',[Controllers\AboutController::class, 'index'])->name('about.index');
+Route::get('/login',[Controllers\AboutController::class, 'index'])->name('login');
 
 Route::get('/fake_suggestion',[Controllers\FakeSuggestController::class, 'index'])->name('fake_suggest.index');
 

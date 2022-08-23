@@ -64,6 +64,7 @@ class User extends Authenticatable
         'updated_at',
         'created_at',
     ];
+
     public static function validateUser($array)
     {
         if (!empty($array)) {

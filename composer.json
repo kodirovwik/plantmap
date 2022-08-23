@@ -12,7 +12,8 @@
         "laravel/sanctum": "^2.14.1",
         "laravel/tinker": "^2.7",
         "laravel/ui": "^3.4",
-        "orchid/platform": "^13.1"
+        "orchid/platform": "^13.1",
+      "ext-intl": "*"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",

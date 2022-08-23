@@ -18,17 +18,11 @@ class SuggestController extends Controller
     /*
      * Посмотреть все предложения
      * */
-    public function index(Request $request)
+    public function index()
     {
-        dd ($request);
-        if ($request->cookie()['session_id'])
-         {
-            $suggestions = Suggestion::all() ;
-            return view('suggest.index', compact('suggestions'));
-        }
-        else {
-            return redirect()->route('about.index');
-        }
+
+        $suggestions = Suggestion::all() ;
+        return view('suggest.index', compact('suggestions'));
     }
 
 
