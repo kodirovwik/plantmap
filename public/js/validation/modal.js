@@ -1,6 +1,6 @@
 const $ = {}
 
-function _createModal() {
+function _createModal(options) {
         const modal = document.createElement('div')
         modal.classList.add('modal')
         modal.insertAdjacentHTML('afterbegin', `
@@ -21,7 +21,7 @@ function _createModal() {
     }
 
 
-    $.modal = function () {
+    $.modal = function (options) {
         const Animation_Speed = 300
         const $modal = _createModal()
         let closing = false
@@ -47,5 +47,8 @@ function _createModal() {
             }
         }
     }
-    const modal = $.modal()
+    const modal = $.modal({
+        title:'',
+
+    })
 

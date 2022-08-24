@@ -20,7 +20,6 @@ class SuggestController extends Controller
      * */
     public function index()
     {
-
         $suggestions = Suggestion::all() ;
         return view('suggest.index', compact('suggestions'));
     }

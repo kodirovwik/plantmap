@@ -11,10 +11,18 @@ function login_post() {
     }
     )
         .then(function (response){
-            window.location.replace('http://plantmap.ru/suggestions');
+            if (response.status === 200) {
+                window.location.replace('http://plantmap.ru/');
+            }
         })
         .catch(function (error) {
-                console.log(error.response.status);
+            switch (error.response.status){
+                case 401: console.log('Такого пользователя нет');
+                break;
+                case 422: console.log('Поля пароль и логин не могут быть пустыми');
+                break;
+            };
+                // modal.open();
                 // if (error.response.data.errors.username[0] == 'The username field is required.') {
                 //     console.log('Поле "Имя пользователя" не может быть пустым!');
                 // }

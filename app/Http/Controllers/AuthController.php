@@ -17,10 +17,10 @@ class AuthController extends Controller
         $user = User::validateUser($data);
         if (!empty($user)) {
             $request->session()->regenerate();
-            return redirect()->intended(route('main',compact('user')));
+            return response('Successfull autorization', 200);
         }
         else {
-            return response('Ошибка авторизации', 401);
+            return response('Ошибка авторизации, падла', 401);
         }
     }
     public function logout() {
