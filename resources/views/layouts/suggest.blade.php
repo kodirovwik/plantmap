@@ -21,16 +21,10 @@
                 <li>
                     <a href="{{ route('map.index') }}">Карта</a>
                 </li>
-                @if (\Illuminate\Support\Facades\Auth::check())
-                    <li>
-                        <a href="{{ route('suggestions.index') }}">Предложения</a>
-                    </li>
-                @endif
                 <li>
                     <a href="{{ route('login') }}">Хто я?</a>
                 </li>
             </ul>
-            <p class="ty">Этот сайтик сделан на чистой мотивации)</p>
         </div>
     </div>
 </header>

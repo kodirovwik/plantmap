@@ -8,7 +8,7 @@ use phpDocumentor\Reflection\Types\Void_;
 
 class MainController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         return view('main');
     }

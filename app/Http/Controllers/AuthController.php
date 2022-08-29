@@ -15,13 +15,7 @@ class AuthController extends Controller
         ]);
         $data = $request->json()->all();
         $user = User::validateUser($data);
-        if (!empty($user)) {
-            $request->session()->regenerate();
-            return response('Successfull autorization', 200);
-        }
-        else {
-            return response('Ошибка авторизации, падла', 401);
-        }
+
     }
     public function logout() {
 

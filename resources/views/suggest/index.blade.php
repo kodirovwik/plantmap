@@ -22,13 +22,13 @@
                     <a href="{{ route('map.index') }}">Карта</a>
                 </li>
                 <li>
-                    <a href="{{ route('about.index') }}">Хто я?</a>
+                    <a href="{{ route('authenticate') }}">Хто я?</a>
                 </li>
                 <li>
                     <a href="{{ route('fake_suggest.index') }}">Тут какули)</a>
                 </li>
                 <li>
-                    <a href="{{ route('auth.logout') }}">Выход</a>
+                    <a href="{{ route('logout') }}">Выход</a>
                 </li>
             </ul>
         </div>

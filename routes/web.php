@@ -23,7 +23,7 @@ Route::post('/login', [Controllers\AuthController::class, 'authenticate'])->name
 
 Route::get('/logout', [Controllers\AuthController::class, 'logout'])->name('logout');
 
-Route::get('/suggestions',[Controllers\SuggestController::class, 'index'])->middleware('auth')->name('suggestions.index');
+Route::get('/suggestions',[Controllers\SuggestController::class, 'index'])->name('suggestions.index');
 
 
 Route::get('/suggestions/create',[Controllers\SuggestController::class, 'create'])->name('suggestions.create');
